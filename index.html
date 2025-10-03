@@ -4,32 +4,70 @@
   <meta charset="UTF-8">
   <title>Seal of Solara</title>
  <style>
-  body { font-family: Arial, sans-serif; background: #111; color: #eee; text-align: center; }
+   body { font-family: Arial, sans-serif; background: #111; color: #eee; text-align: center; }
   img { width: 420px; height: 315px; border: 2px solid #444; margin-bottom: 8px; opacity: 1; transition: opacity 0.6s ease-in-out; }
   button { margin: 3px; padding: 4px 8px; font-size: 12px; cursor: pointer; }
   #message { font-size: 14px; margin: 6px; color: #ffd700; min-height: 20px; }
   #inventory { margin-top: 6px; font-size: 13px; }
-  #controls { margin-top: 12px; }
+  #controls { margin-top: 10px; }
   #return { margin-top: 12px; display: none; }
 
   /* Movement pad layout */
   .dpad {
     display: grid;
-    grid-template-columns: 45px 45px 45px;
-    grid-template-rows: 45px 45px 45px;
+    grid-template-columns: 35px 35px 35px;
+    grid-template-rows: 35px 35px;
+	gap: 3px;
     justify-content: center;
     margin: 6px auto;
-    gap: 3px;
+    
   }
-  .dpad button { width: 45px; height: 45px; font-size: 14px; }
+	.dpad button {
+	    width: 35px;
+		height: 35px;
+		font-size: 14px;
+		background-color: #2e1f0f;       /* Match actions */
+		color: #f4e9d8;                  /* Match actions */
+		border: 1px solid #d4af37;
+		border-radius: 4px;
+		font-family: 'Cinzel', serif;   /* Match actions */
+		cursor: pointer;
+		transition: box-shadow 0.3s ease, transform 0.2s ease;
+	}
+	.dpad button:hover {
+	  box-shadow: 0 0 8px #d4af37;
+	  transform: scale(1.03);
+	}
   .dpad .north { grid-column: 2; grid-row: 1; }
   .dpad .west  { grid-column: 1; grid-row: 2; }
   .dpad .east  { grid-column: 3; grid-row: 2; }
-  .dpad .south { grid-column: 2; grid-row: 3; }
+  .dpad .south { grid-column: 2; grid-row: 2; }
 
   /* Action row */
-  .actions { margin-top: 10px; }
-  .actions button { font-size: 12px; padding: 4px 10px; }
+ .actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 12px 0;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  background-color: #2e1f0f;
+  color: #f4e9d8;
+  border: 1px solid #d4af37;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-family: 'Cinzel', serif;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.actions button:hover {
+  box-shadow: 0 0 8px #d4af37;
+  transform: scale(1.03);
+}
 </style>
 
 
@@ -140,6 +178,7 @@
 </body>
 
 </html>
+
 
 
 
