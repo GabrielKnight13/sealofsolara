@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: seal-of-solara
+    env: python
+    buildCommand: ""
+    startCommand: python app.py
