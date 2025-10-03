@@ -5,12 +5,34 @@
   <title>Seal of Solara</title>
  <style>
    body { font-family: Arial, sans-serif; background: #111; color: #eee; text-align: center; }
-  img { width: 420px; height: 315px; border: 2px solid #444; margin-bottom: 8px; opacity: 1; transition: opacity 0.6s ease-in-out; }
+  img { width: 420px; height: 315px; border: 2px solid #444; align-items: center;margin-bottom: 8px; opacity: 1; transition: opacity 0.6s ease-in-out; }
   button { margin: 3px; padding: 4px 8px; font-size: 12px; cursor: pointer; }
   #message { font-size: 14px; margin: 6px; color: #ffd700; min-height: 20px; }
   #inventory { margin-top: 6px; font-size: 13px; }
   #controls { margin-top: 10px; }
   #return { margin-top: 12px; display: none; }
+/* Scene wrapper adapts to screen */
+#scene-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px; /* Optional: cap width for large screens */
+  margin: auto;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+/* Scene image scales naturally */
+#scene {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  border: 2px solid #444;
+  border-radius: 6px;
+  transition: opacity 0.6s ease-in-out;
+}
 
   /* Movement pad layout */
   .dpad {
@@ -53,11 +75,13 @@
 }
 
 .actions button {
+  flex: 1 1 120px;
+  max-width: 140px;
+  padding: 6px 12px;
   background-color: #2e1f0f;
   color: #f4e9d8;
   border: 1px solid #d4af37;
-  padding: 6px 12px;
-  font-size: 12px;
+  font-size: 14px;
   font-family: 'Cinzel', serif;
   border-radius: 4px;
   cursor: pointer;
@@ -68,12 +92,32 @@
   box-shadow: 0 0 8px #d4af37;
   transform: scale(1.03);
 }
-</style>
+#message, #description {
+  font-size: clamp(12px, 2vw, 16px);
+  text-align: center;
+  margin: 6px 0;
+}
+@media (max-width: 600px) {
+  #scene-wrapper {
+    max-width: 100%;
+    padding: 0 8px;
+  }
 
+  .actions button {
+    flex: 1 1 100px;
+    font-size: 13px;
+  }
+
+  #scene {
+    max-height: 60vh;
+  }
+}
+</style>
 
 </head>
 <body>
   <h1>Seal of Solara</h1>
+	 <div id="scene-wrapper">
   <img id="scene" src="/static/assets/forest.png" alt="Scene Image">
   <div id="message">Welcome, adventurer.</div>
   <p id="description"></p>
@@ -103,6 +147,7 @@
     <button onclick="resetGame()">🏠 Return to Title</button>
   </div>
   <p id="heartbeat" style="font-size:12px; color:#888;">Heartbeat: waiting...</p>
+   </div>
   <script>
     async function sendAction(endpoint, payload = {}) {
       const res = await fetch(`/${endpoint}`, {
@@ -178,6 +223,7 @@
 </body>
 
 </html>
+
 
 
 
