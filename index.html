@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Seal of Solara</title>
+ <style>
+  body { font-family: Arial, sans-serif; background: #111; color: #eee; text-align: center; }
+  img { width: 420px; height: 315px; border: 2px solid #444; margin-bottom: 8px; opacity: 1; transition: opacity 0.6s ease-in-out; }
+  button { margin: 3px; padding: 4px 8px; font-size: 12px; cursor: pointer; }
+  #message { font-size: 14px; margin: 6px; color: #ffd700; min-height: 20px; }
+  #inventory { margin-top: 6px; font-size: 13px; }
+  #controls { margin-top: 12px; }
+  #return { margin-top: 12px; display: none; }
+
+  /* Movement pad layout */
+  .dpad {
+    display: grid;
+    grid-template-columns: 45px 45px 45px;
+    grid-template-rows: 45px 45px 45px;
+    justify-content: center;
+    margin: 6px auto;
+    gap: 3px;
+  }
+  .dpad button { width: 45px; height: 45px; font-size: 14px; }
+  .dpad .north { grid-column: 2; grid-row: 1; }
+  .dpad .west  { grid-column: 1; grid-row: 2; }
+  .dpad .east  { grid-column: 3; grid-row: 2; }
+  .dpad .south { grid-column: 2; grid-row: 3; }
+
+  /* Action row */
+  .actions { margin-top: 10px; }
+  .actions button { font-size: 12px; padding: 4px 10px; }
+</style>
+
+
+</head>
+<body>
+  <h1>Seal of Solara</h1>
+  <img id="scene" src="/static/assets/forest.png" alt="Scene Image">
+  <div id="message">Welcome, adventurer.</div>
+
+  <div id="controls">
+    <!-- Movement pad -->
+    <div class="dpad">
+      <button class="north" onclick="sendAction('move', { direction: 'north' })">⬆️</button>
+      <button class="west"  onclick="sendAction('move', { direction: 'west' })">⬅️</button>
+      <button class="east"  onclick="sendAction('move', { direction: 'east' })">➡️</button>
+      <button class="south" onclick="sendAction('move', { direction: 'south' })">⬇️</button>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="actions">
+      <button onclick="sendAction('grab')">🧤 Grab</button>
+      <button onclick="sendAction('use')">🪄 Use</button>
+      <button onclick="sendAction('talk')">🗣️ Talk</button>
+      <button onclick="sendAction('cycle_inventory', { direction: 'next' })">🔁 Next Item</button>
+    </div>
+  </div>
+
+  <div id="inventory">Inventory: <span id="items">None</span></div>
+  <div id="selected">Selected: <span id="selectedItem">None</span></div>
+
+  <div id="return">
+    <h2>✨ Victory!</h2>
+    <button onclick="resetGame()">🏠 Return to Title</button>
+  </div>
+
+  <script>
+    async function sendAction(endpoint, payload = {}) {
+      const res = await fetch(`/${endpoint}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      updateUI(data);
+    }
+
+    async function loadInventory() {
+      const res = await fetch("/inventory");
+      const data = await res.json();
+      updateUI(data);
+    }
+
+    async function resetGame() {
+      const res = await fetch("/reset", { method: "POST" });
+      const data = await res.json();
+      updateUI(data);
+      document.getElementById("controls").style.display = "block";
+      document.getElementById("return").style.display = "none";
+    }
+
+    function updateUI(data) {
+      document.getElementById("message").textContent = data.message;
+      if (data.image) fadeScene(data.image);
+      if (data.inventory) {
+        document.getElementById("items").textContent = data.inventory.join(", ") || "None";
+        document.getElementById("selectedItem").textContent = data.selected || "None";
+      }
+      if (data.type === "end") {
+        document.getElementById("controls").style.display = "none";
+        document.getElementById("return").style.display = "block";
+      }
+    }
+
+    function fadeScene(newSrc) {
+      const scene = document.getElementById("scene");
+      scene.style.opacity = 0;
+      setTimeout(() => {
+        scene.src = newSrc;
+        scene.onload = () => { scene.style.opacity = 1; };
+      }, 300);
+    }
+
+    // Initial load
+    loadInventory();
+  </script>
+</body>
+</html>
+
