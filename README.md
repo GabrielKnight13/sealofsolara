@@ -7,7 +7,7 @@ Explore a mystical world, collect magical items, and unlock the ancient seal to 
 
 ---
 Live Demo
-Play it now: https://seal-of-solara.onrender.com
+Play it now: https://sealofsolara.onrender.com
 
 ## 🎮 Features
 
