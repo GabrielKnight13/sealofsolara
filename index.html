@@ -115,10 +115,15 @@
 
     // Initial load
     loadInventory();
+
+    setInterval(() => {
+    fetch("/inventory");
+  }, 600000); // 600,000 ms = 10 minutes
   </script>
 </body>
 
 </html>
+
 
 
 
