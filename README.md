@@ -24,7 +24,7 @@ Play it now: https://sealofsolara.onrender.com
 
 ```bash
 # Clone the repo
-git clone https://github.com/GabrielKnight13/seal-of-solara.git
+git clone https://github.com/GabrielKnight13/sealofsolara.git
 cd seal-of-solara
 
 # (Optional) Create a virtual environment
