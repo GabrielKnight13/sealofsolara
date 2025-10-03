@@ -38,7 +38,7 @@
   <h1>Seal of Solara</h1>
   <img id="scene" src="/static/assets/forest.png" alt="Scene Image">
   <div id="message">Welcome, adventurer.</div>
-
+  <p id="description"></p>
   <div id="controls">
     <!-- Movement pad -->
     <div class="dpad">
@@ -91,6 +91,7 @@
     }
 
     function updateUI(data) {
+      document.getElementById("description").textContent = data.description;
       document.getElementById("message").textContent = data.message;
       if (data.image) fadeScene(data.image);
       if (data.inventory) {
@@ -118,6 +119,7 @@
 </body>
 
 </html>
+
 
 
 
