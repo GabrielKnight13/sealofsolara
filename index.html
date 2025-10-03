@@ -64,7 +64,7 @@
     <h2>✨ Victory!</h2>
     <button onclick="resetGame()">🏠 Return to Title</button>
   </div>
-
+  <p id="heartbeat" style="font-size:12px; color:#888;">Heartbeat: waiting...</p>
   <script>
     async function sendAction(endpoint, payload = {}) {
       const res = await fetch(`/${endpoint}`, {
@@ -115,14 +115,25 @@
 
     // Initial load
     loadInventory();
-
-    setInterval(() => {
-      fetch("/ping");
-    }, 600000);
+    
+    // 🔄 Keep Render awake every 5 minutes
+  setInterval(() => {
+    fetch("/ping")
+      .then(() => {
+        const hb = document.getElementById("heartbeat");
+        const now = new Date().toLocaleTimeString();
+        hb.textContent = `Heartbeat: ${now}`;
+      })
+      .catch(() => {
+        document.getElementById("heartbeat").textContent = "Heartbeat: failed";
+      });
+  }, 300000); // every 5 minutes
+    
   </script>
 </body>
 
 </html>
+
 
 
 
