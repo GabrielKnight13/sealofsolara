@@ -3,7 +3,7 @@
 **Seal of Solara** is a browser-based adventure game built with Flask and JavaScript.  
 Explore a mystical world, collect magical items, and unlock the ancient seal to restore light to the city.
 
-![Screenshot](static/assets/forest_with_key.png)
+![Screenshot](static/assets/ruins.png)
 
 ---
 Live Demo
