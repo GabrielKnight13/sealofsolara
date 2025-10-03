@@ -115,24 +115,32 @@
 
     // Initial load
     loadInventory();
-    
-    // 🔄 Keep Render awake every 5 minutes
+    // 🔄 Manual ping on page load
+  fetch("/ping")
+    .then(() => {
+      const now = new Date().toLocaleTimeString();
+      document.getElementById("heartbeat").textContent = `Heartbeat: ${now}`;
+    })
+    .catch(() => {
+      document.getElementById("heartbeat").textContent = "Heartbeat: failed";
+    });
+
+  // 🔁 Background ping every 5 minutes
   setInterval(() => {
     fetch("/ping")
       .then(() => {
-        const hb = document.getElementById("heartbeat");
         const now = new Date().toLocaleTimeString();
-        hb.textContent = `Heartbeat: ${now}`;
+        document.getElementById("heartbeat").textContent = `Heartbeat: ${now}`;
       })
       .catch(() => {
         document.getElementById("heartbeat").textContent = "Heartbeat: failed";
       });
-  }, 300000); // every 5 minutes
-    
+  }, 300000); // 5 minutes
   </script>
 </body>
 
 </html>
+
 
 
 
