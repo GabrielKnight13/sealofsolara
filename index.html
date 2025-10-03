@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Seal of Solara</title>
  <style>
- body { font-family: Arial, sans-serif; background: #111; color: #eee; text-align: center; }
+  body { font-family: Arial, sans-serif; background: #111; color: #eee; text-align: center; }
   img { width: 420px; height: 315px; border: 2px solid #444; align-items: center;margin-bottom: 8px; opacity: 1; transition: opacity 0.6s ease-in-out; }
   button { margin: 3px; padding: 4px 8px; font-size: 12px; cursor: pointer; }
   #message { font-size: 14px; margin: 6px; color: #ffd700; min-height: 20px; }
@@ -12,29 +12,27 @@
   #controls { margin-top: 10px; }
   #return { margin-top: 12px; display: none; }
 /* Scene wrapper adapts to screen */
-#scene-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
-  padding: 0 12px;
-  box-sizing: border-box;
-  height: auto;
-  
+  #scene-wrapper {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: center;
+	  width: 100%;
+	  max-width: 800px;
+	  margin: auto;
+	  padding: 0 12px;
+	  box-sizing: border-box;
+	  height: auto;  
 }
-
 /* Scene image scales naturally */
-#scene {
-  width: 100%;
-  height: auto;
-  max-height: 80vh;
-  object-fit: contain;
-  border: 2px solid #444;
-  border-radius: 6px;
-  transition: opacity 0.6s ease-in-out;
+  #scene {
+	  width: 100%;
+	  height: auto;
+	  max-height: 80vh;
+	  object-fit: contain;
+	  border: 2px solid #444;
+	  border-radius: 6px;
+	  transition: opacity 0.6s ease-in-out;
 }
 
   /* Movement pad layout */
@@ -47,7 +45,7 @@
     margin: 6px auto;
     
   }
-	.dpad button {
+  .dpad button {
 	    width: 35px;
 		height: 35px;
 		font-size: 14px;
@@ -70,30 +68,30 @@
 
   /* Action row */
  .actions {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 12px 0;
-  flex-wrap: wrap;
+	  display: flex;
+	  justify-content: center;
+	  gap: 10px;
+	  margin: 12px 0;
+	  flex-wrap: wrap;
 }
 
 .actions button {
-  flex: 1 1 120px;
-  max-width: 140px;
-  padding: 6px 12px;
-  background-color: #2e1f0f;
-  color: #f4e9d8;
-  border: 1px solid #d4af37;
-  font-size: 14px;
-  font-family: 'Cinzel', serif;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
+	  flex: 1 1 120px;
+	  max-width: 140px;
+	  padding: 6px 12px;
+	  background-color: #2e1f0f;
+	  color: #f4e9d8;
+	  border: 1px solid #d4af37;
+	  font-size: 14px;
+	  font-family: 'Cinzel', serif;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 .actions button:hover {
-  box-shadow: 0 0 8px #d4af37;
-  transform: scale(1.03);
+	  box-shadow: 0 0 8px #d4af37;
+	  transform: scale(1.03);
 }
 #message, #description {
   font-size: clamp(12px, 2vw, 16px);
@@ -105,23 +103,20 @@
     max-width: 100%;
     padding: 0 8px;
   }
-
   .actions button {
     flex: 1 1 100px;
     font-size: 13px;
   }
-
   #scene {
     max-height: 60vh;
   }
 }
 </style>
-
 </head>
 <body>
   <h1>Seal of Solara</h1>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-	 <div id="scene-wrapper">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <div id="scene-wrapper">
   <img id="scene" src="/static/assets/forest.png" alt="Scene Image">
   <div id="message">Welcome, adventurer.</div>
   <p id="description"></p>
@@ -225,8 +220,8 @@
   }, 300000); // 5 minutes
   </script>
 </body>
-
 </html>
+
 
 
 
