@@ -83,7 +83,8 @@ def reset():
     return jsonify(game_state_by_player[player_id].to_dict("Game reset. Welcome back!", "neutral"))
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=10000, debug=True)
+
 
 
 
